@@ -37,7 +37,7 @@ Elements of the query component may contain characters outside the valid range. 
 
 ### ABNF grammar
 
-(See also [a simpler representation of syntax](#Simpler_syntax))
+(See also [a simpler representation of syntax](#simpler-syntax).)
 
 ```
  iota-urn      = "iota:" iota-address [ "?" iota-params ]
@@ -99,7 +99,7 @@ As this proposal is written, no known IOTA clients actively implement an `iota:`
 ### Simpler syntax
 
 This section is non-normative and does not cover all possible syntax.
-Please see the [ABNF grammar](#ABNF_grammar) above for the normative syntax.
+Please see the [ABNF grammar](#abnf-grammar) above for the normative syntax.
 
 `[foo]` means optional, `<bar>` are placeholders
 
