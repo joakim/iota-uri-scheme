@@ -49,7 +49,7 @@ Elements of the query component may contain characters outside the valid range. 
  other-param   = 1*qchar [ "=" *qchar ]
 ```
 
-Here, `qchar` corresponds to valid characters of an [RFC 3986](https://tools.ietf.org/html/rfc3986) URI query component, excluding the `=` and `&` characters, which this proposal takes as separators.
+Here, `qchar` corresponds to valid characters of an [RFC 3986](https://tools.ietf.org/html/rfc3986) URI query component, excluding the `=` and `&` characters, which this proposal takes as separators. A `tryte` is the ternary equivalent of a byte, represented as uppercase latin letters (A-Z) and the number 9.
 
 The scheme component (`iota:`) is case-insensitive, and implementations must accept any combination of uppercase and lowercase letters. The rest of the URI is case-sensitive, including the query parameter keys.
 
