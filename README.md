@@ -41,7 +41,7 @@ Elements of the query component may contain characters outside the valid range. 
 
 ```
  iota-urn      = "iota:" iota-address [ "?" iota-params ]
- iota-address  = 81tryte
+ iota-address  = 90tryte
  iota-params   = iota-param [ "&" iota-params ]
  iota-param    = [ value-param / tag-param / message-param / other-param ]
  value-param   = "value=" *digit
