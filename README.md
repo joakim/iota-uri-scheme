@@ -59,8 +59,8 @@ Only the address is required, all query parameters are optional.
 ### Query parameters
 
 - value: Transfer value (see below)
-- tag: A short tag to be attached to the transfer
-- message: A message to be attached to the transfer
+- tag: A short tag to be published with the transfer
+- message: A message to be published with the transfer
 - other: Other parameters for future extensions (see below)
 
 #### Transfer value
