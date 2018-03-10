@@ -43,9 +43,10 @@ Elements of the query component may contain characters outside the valid range. 
  iota-urn      = "iota:" iota-address [ "?" iota-params ]
  iota-address  = 81tryte
  iota-params   = iota-param [ "&" iota-params ]
- iota-param    = [ value-param / tag-param / other-param ]
+ iota-param    = [ value-param / tag-param / message-param / other-param ]
  value-param   = "value=" *digit
  tag-param     = "tag=" *qchar
+ message-param = "message=" *qchar
  other-param   = 1*qchar [ "=" *qchar ]
 ```
 
@@ -58,7 +59,8 @@ Only the address is required, all query parameters are optional.
 ### Query parameters
 
 - value: Transfer value (see below)
-- tag: A short message to be attached to the transfer (publicly searchable)
+- tag: A short tag to be attached to the transfer
+- message: A message to be attached to the transfer
 - other: Other parameters for future extensions (see below)
 
 #### Transfer value
@@ -104,7 +106,7 @@ Please see the [ABNF grammar](#abnf-grammar) above for the normative syntax.
 `[foo]` means optional, `<bar>` are placeholders
 
 ```
-iota:<address>[?value=<value>][?tag=<tag>]
+iota:<address>[?value=<value>][?tag=<tag>][?message=<message>]
 ```
 
 ### Examples
@@ -127,7 +129,7 @@ Request for 10 Mi (Mega IOTAs):
 
 Request for 1 Gi (Giga IOTAs) with a message:
 
-    iota:MZLFXAZOHOSGRPIGFSQATWQXTFRWATQTOZXAZIGCRXAGIED9ZCPXMCMSSUHYVEGVTOILQMAD9VZIV9PJCHCCO9YMIW?value=1000000000&tag=Payment%20for%20XYZ
+    iota:MZLFXAZOHOSGRPIGFSQATWQXTFRWATQTOZXAZIGCRXAGIED9ZCPXMCMSSUHYVEGVTOILQMAD9VZIV9PJCHCCO9YMIW?value=1000000000&message=Payment%20for%20XYZ
 
 Some future version that has parameters which are currently not understood and will therefore be ignored:
 
