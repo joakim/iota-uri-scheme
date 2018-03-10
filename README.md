@@ -7,7 +7,7 @@
   License: CC-BY-SA-4.0
 ```
 
-This is an "improvement proposal" for IOTA based on [BIP21](https://github.com/bitcoin/bips/blob/master/bip-0021.mediawiki) for Bitcoin.
+This is a proposal for IOTA, based on [BIP21](https://github.com/bitcoin/bips/blob/master/bip-0021.mediawiki) for Bitcoin.
 
 ## Abstract
 
@@ -53,7 +53,7 @@ Here, `qchar` corresponds to valid characters of an [RFC 3986](https://tools.iet
 
 The scheme component (`iota:`) is case-insensitive, and implementations must accept any combination of uppercase and lowercase letters. The rest of the URI is case-sensitive, including the query parameter keys.
 
-Only the address is required, all query parameters are optional
+Only the address is required, all query parameters are optional.
 
 ### Query parameters
 
