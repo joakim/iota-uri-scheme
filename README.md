@@ -79,7 +79,6 @@ If a value is provided, it **MUST** be specified using IOTA units (i) in integer
 IOTA clients **MAY** display the value in any format that is not intended to deceive the user.
 
 IOTA clients **SHOULD** choose a format that is foremost least confusing, and only after that the format that is most reasonable given the value specified.
-For example, so long as the majority of users are used to Mega IOTA units (Mi), values should always be displayed in Mega IOTAs by default, even if Kilo IOTAs (Ki) would otherwise be a more logical interpretation of the value.
 
 ##### Other parameters for future extensions
 
