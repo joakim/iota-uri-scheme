@@ -18,11 +18,10 @@ This is a proposal for IOTA, based on [BIP21](https://github.com/bitcoin/bips/bl
 >     - [ABNF grammar](#abnf-grammar)
 >     - [Percent-encoding](#percent-encoding)
 >     - [Query parameters](#query-parameters)
->       - [Transfer value](#transfer-value)
->       - [Other parameters for future extensions](#other-parameters-for-future-extensions)
 >   - [Implementation](#implementation)
 >     - [Operating system integration](#operating-system-integration)
->     - [Rules for handling URIs](#rules-for-handling-uris)
+>     - [Handling URIs](#handling-uris)
+>     - [Displaying the value](#displaying-the-value)
 > - [Forward compatibility](#forward-compatibility)
 > - [Backward compatibility](#backward-compatibility)
 > - [Appendix](#appendix)
@@ -77,20 +76,11 @@ Non-ASCII characters **MUST** first be encoded according to UTF-8 [STD63](https:
 
 #### Query parameters
 
-- value: Transfer value (see below)
-- tag: A short tag to be published with the transfer
-- message: A message to be published with the transfer
-- other: Other parameters for future extensions (see below)
+- `value` – Transfer value
+- `tag` – A short tag to be published with the transfer
+- `message` – A message to be published with the transfer
 
-##### Transfer value
-
-If a value is provided, it **MUST** be specified using IOTA units (i) in integer numbers.
-
-IOTA clients **MAY** display the value in any format that is not intended to deceive the user.
-
-IOTA clients **SHOULD** choose a format that is foremost least confusing, and only after that the format that is most reasonable given the value specified.
-
-##### Other parameters for future extensions
+If `value` is provided, it **MUST** be specified using IOTA units (i) in integer numbers.
 
 Other parameters **MAY** be added for future extensions. These **MUST** be optional, support is not to be expected in IOTA clients.
 
@@ -98,13 +88,19 @@ Other parameters **MAY** be added for future extensions. These **MUST** be optio
 
 #### Operating system integration
 
-IOTA GUI clients **SHOULD** register themselves as the handler for the `iota` URI scheme by default if no other handler is already registered. If there is already a registered handler, the client **MAY** prompt the user to change it once when they first run the client.
+IOTA clients **SHOULD** register themselves as the handler for the `iota` URI scheme by default if no other handler is already registered. If there is already a registered handler, the client **MAY** prompt the user to change it once when they first run the client.
 
-#### Rules for handling URIs
+#### Handling URIs
 
 IOTA clients **MUST NOT** act on URIs without getting the user's authorization.
 
 IOTA clients **SHOULD** require the user to manually approve each transfer individually, though in some cases they **MAY** allow the user to automatically make this decision.
+
+#### Displaying the value
+
+IOTA clients **MAY** display the value in any format that is not intended to deceive the user.
+
+IOTA clients **SHOULD** choose a format that is foremost least confusing, and only after that the format that is most reasonable given the value specified.
 
 ## Forward compatibility
 
