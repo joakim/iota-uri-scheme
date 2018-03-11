@@ -21,16 +21,6 @@ The purpose of this URI scheme is to enable users to easily make transfers by si
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC2119](https://tools.ietf.org/html/rfc2119).
 
-### Important rules for handling URIs
-
-IOTA clients **MUST NOT** act on URIs without getting the user's authorization.
-
-IOTA clients **SHOULD** require the user to manually approve each transfer individually, though in some cases they **MAY** allow the user to automatically make this decision.
-
-### Operating system integration
-
-IOTA GUI clients **SHOULD** register themselves as the handler for the `iota` URI scheme by default if no other handler is already registered. If there is already a registered handler, the client **MAY** prompt the user to change it once when they first run the client.
-
 ### Syntax
 
 The syntax of an `iota` URI is described using the ABNF of [STD68](https://tools.ietf.org/html/std68) and non-terminal definitions from [STD66](https://tools.ietf.org/html/std66) (unreserved, pct-encoded).
@@ -83,6 +73,18 @@ IOTA clients **SHOULD** choose a format that is foremost least confusing, and on
 ##### Other parameters for future extensions
 
 Other parameters **MAY** be added for future extensions. These **MUST** be optional, support is not to be expected in IOTA clients.
+
+### Implementation
+
+### Operating system integration
+
+IOTA GUI clients **SHOULD** register themselves as the handler for the `iota` URI scheme by default if no other handler is already registered. If there is already a registered handler, the client **MAY** prompt the user to change it once when they first run the client.
+
+### Rules for handling URIs
+
+IOTA clients **MUST NOT** act on URIs without getting the user's authorization.
+
+IOTA clients **SHOULD** require the user to manually approve each transfer individually, though in some cases they **MAY** allow the user to automatically make this decision.
 
 ## Rationale
 
