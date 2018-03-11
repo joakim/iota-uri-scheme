@@ -27,52 +27,61 @@ IOTA clients **SHOULD** require the user to manually approve each transfer indiv
 
 ### Operating system integration
 
-IOTA GUI clients **SHOULD** register themselves as the handler for the `iota:` URI scheme by default if no other handler is already registered. If there is already a registered handler, the client **MAY** prompt the user to change it once when they first run the client.
+IOTA GUI clients **SHOULD** register themselves as the handler for the `iota` URI scheme by default if no other handler is already registered. If there is already a registered handler, the client **MAY** prompt the user to change it once when they first run the client.
 
-### General format
+### Syntax
 
-IOTA URIs follow the general format for URIs as described in [RFC 3986](https://tools.ietf.org/html/rfc3986). The path component consists of an IOTA address, and the query component provides additional parameters relating to the transfer.
+The syntax of an `iota` URI is described using the ABNF of [STD68](https://tools.ietf.org/html/std68) and non-terminal definitions from [STD66](https://tools.ietf.org/html/std66) (unreserved, pct-encoded).
+The path component consists of an IOTA address, and the query component provides additional parameters relating to the transfer.
 
-Elements of the query component may contain characters outside the valid range. These must first be encoded according to UTF-8, and then each octet of the corresponding UTF-8 sequence must be percent-encoded as described in [RFC 3986](https://tools.ietf.org/html/rfc3986).
+#### ABNF grammar
 
-### ABNF grammar
-
-(See also [a simpler representation of syntax](#simpler-syntax).)
+(See also [a simpler representation of the syntax](#simpler-syntax).)
 
 ```
- iota-urn      = "iota:" iota-address [ "?" iota-params ]
- iota-address  = 90tryte
- iota-params   = iota-param [ "&" iota-params ]
- iota-param    = [ value-param / tag-param / message-param / other-param ]
- value-param   = "value=" *digit
- tag-param     = "tag=" *qchar
- message-param = "message=" *qchar
- other-param   = 1*qchar [ "=" *qchar ]
+iota-uri      = "iota:" [ address ] [ params ]
+address       = 90tryte ; IOTA address with checksum
+params        = "?" param *( "&" param )
+param         = [ value-param / tag-param / message-param / other-param ]
+value-param   = "value=" *digit
+tag-param     = "tag=" pvalue
+message-param = "message=" pvalue
+other-param   = pname [ "=" pvalue ]
+
+tryte         = *( %x41-5A / "9" ) ; A-Z9
+pname         = 1*qchar ; 1 or more qchars
+pvalue        = *qchar ; 0 or more qchars
+qchar         = unreserved / pct-encoded / allowed-chars
+allowed-chars = "!" / "$" / "'" / "(" / ")" / "*" / "+" / "," / ";" / "@"
 ```
 
-Here, `qchar` corresponds to valid characters of an [RFC 3986](https://tools.ietf.org/html/rfc3986) URI query component, excluding the `=` and `&` characters, which this proposal takes as separators. A `tryte` is the ternary equivalent of a byte, represented as uppercase latin letters (A-Z) and the number 9.
+A `tryte` is the ternary equivalent of a byte, represented as uppercase latin letters (A-Z) and the number 9. The 90 trytes `address` consists of an IOTA address (81 trytes) and its checksum (9 trytes).
 
-The scheme component (`iota:`) is case-insensitive, and implementations must accept any combination of uppercase and lowercase letters. The rest of the URI is case-sensitive, including the query parameter keys.
+#### Percent-encoding
 
-Only the address is required, all query parameters are optional.
+Some characters that can appear in `qchar` **MUST** be percent-encoded. These are the characters that cannot appear in a URI according to [STD66](https://tools.ietf.org/html/std66), as well as `%` (because it is used for percent-encoding). Of the characters in `registered`, the following are reserved and **MUST** be percent-encoded when not serving as delimiters: `:`, `?`, `=`, and `&`.
 
-### Query parameters
+Non-ASCII characters **MUST** first be encoded according to UTF-8 [STD63](https://tools.ietf.org/html/std63), and then each octet of the corresponding UTF-8 sequence **MUST** be percent-encoded to be represented as URI characters.
+
+The scheme component (`iota`) is case-insensitive, and implementations must accept any combination of uppercase and lowercase letters. The rest of the URI is case-sensitive, including the query parameter keys.
+
+#### Query parameters
 
 - value: Transfer value (see below)
 - tag: A short tag to be published with the transfer
 - message: A message to be published with the transfer
 - other: Other parameters for future extensions (see below)
 
-#### Transfer value
+##### Transfer value
 
-If a value is provided, it **MUST** be specified as IOTAs (i) in integer numbers.
+If a value is provided, it **MUST** be specified using IOTA units (i) in integer numbers.
 
 IOTA clients **MAY** display the value in any format that is not intended to deceive the user.
 
 IOTA clients **SHOULD** choose a format that is foremost least confusing, and only after that the format that is most reasonable given the value specified.
 For example, so long as the majority of users are used to Mega IOTA units (Mi), values should always be displayed in Mega IOTAs by default, even if Kilo IOTAs (Ki) would otherwise be a more logical interpretation of the value.
 
-#### Other parameters for future extensions
+##### Other parameters for future extensions
 
 Other parameters **MAY** be added for future extensions. These **MUST** be optional, support is not to be expected in IOTA clients.
 
@@ -94,7 +103,7 @@ Any parameters for future extensions that are not supported by the IOTA client, 
 
 ## Backward compatibility
 
-As this proposal is written, no known IOTA clients actively implement an `iota:` URI scheme.
+As this proposal is written, no known IOTA clients actively implement an `iota` URI scheme.
 
 ## Appendix
 
@@ -106,7 +115,7 @@ Please see the [ABNF grammar](#abnf-grammar) above for the normative syntax.
 `[foo]` means optional, `<bar>` are placeholders
 
 ```
-iota:<address>[?value=<value>][?tag=<tag>][?message=<message>]
+iota:[<address>][?value=<value>][?tag=<tag>][?message=<message>]
 ```
 
 ### Examples
