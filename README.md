@@ -53,8 +53,8 @@ other-param   = pname [ "=" pvalue ]
 tryte         = *( %x41-5A / "9" ) ; A-Z9
 pname         = 1*qchar ; 1 or more qchars
 pvalue        = *qchar ; 0 or more qchars
-qchar         = unreserved / pct-encoded / allowed-chars
-allowed-chars = "!" / "$" / "'" / "(" / ")" / "*" / "+" / "," / ";" / "@"
+qchar         = unreserved / pct-encoded / not-reserved
+not-reserved  = "!" / "$" / "'" / "(" / ")" / "*" / "+" / "," / ";" / "@"
 ```
 
 A `tryte` is the ternary equivalent of a byte, represented as uppercase latin letters (A-Z) and the number 9. The 90 trytes `address` consists of an IOTA address (81 trytes) and its checksum (9 trytes).
