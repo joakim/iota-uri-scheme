@@ -76,11 +76,11 @@ Other parameters **MAY** be added for future extensions. These **MUST** be optio
 
 ### Implementation
 
-### Operating system integration
+#### Operating system integration
 
 IOTA GUI clients **SHOULD** register themselves as the handler for the `iota` URI scheme by default if no other handler is already registered. If there is already a registered handler, the client **MAY** prompt the user to change it once when they first run the client.
 
-### Rules for handling URIs
+#### Rules for handling URIs
 
 IOTA clients **MUST NOT** act on URIs without getting the user's authorization.
 
