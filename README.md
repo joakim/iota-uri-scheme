@@ -19,6 +19,8 @@ The purpose of this URI scheme is to enable users to easily make transfers by si
 
 ## Specification
 
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC2119](https://tools.ietf.org/html/rfc2119).
+
 ### Important rules for handling URIs
 
 IOTA clients **MUST NOT** act on URIs without getting the user's authorization.
