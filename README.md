@@ -65,8 +65,6 @@ Some characters that can appear in `qchar` **MUST** be percent-encoded. These ar
 
 Non-ASCII characters **MUST** first be encoded according to UTF-8 [STD63](https://tools.ietf.org/html/std63), and then each octet of the corresponding UTF-8 sequence **MUST** be percent-encoded to be represented as URI characters.
 
-The scheme component (`iota`) is case-insensitive, and implementations must accept any combination of uppercase and lowercase letters. The rest of the URI is case-sensitive, including the query parameter keys.
-
 #### Query parameters
 
 - value: Transfer value (see below)
