@@ -86,18 +86,6 @@ IOTA clients **MUST NOT** act on URIs without getting the user's authorization.
 
 IOTA clients **SHOULD** require the user to manually approve each transfer individually, though in some cases they **MAY** allow the user to automatically make this decision.
 
-## Rationale
-
-### Transfer identifiers, not recipient identifiers
-
-Current best practice for IOTA is to generate a unique address for every transfer, as one should never reuse an address after having spent from it.
-Therefore, the URI scheme should not represent the _recipient_ of transfers, but a _one-time transfer_.
-
-### Accessibility (URI scheme name)
-
-Should someone not familiar with IOTA happen to see such a URI, the URI scheme name already gives a description.
-A quick search should then do the rest to help them find the resources needed to make the transfer.
-
 ## Forward compatibility
 
 Any parameters for future extensions that are not supported by the IOTA client, can be safely ignored by the client.
@@ -144,13 +132,3 @@ Request for 1 Gi (Giga IOTAs) with a message:
 Some future version that has parameters which are currently not understood and will therefore be ignored:
 
     iota:MZLFXAZOHOSGRPIGFSQATWQXTFRWATQTOZXAZIGCRXAGIED9ZCPXMCMSSUHYVEGVTOILQMAD9VZIV9PJCHCCO9YMIW?somethingyoudontunderstand=50&somethingelseyoudontget=999
-
-## Reference implementations
-
-### IOTA clients
-
-* No clients yet
-
-### Libraries
-
-* No libraries yet
