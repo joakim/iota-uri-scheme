@@ -9,6 +9,26 @@
 
 This is a proposal for IOTA, based on [BIP21](https://github.com/bitcoin/bips/blob/master/bip-0021.mediawiki) for Bitcoin.
 
+## Table of Contents
+
+> - [Abstract](#abstract)
+> - [Motivation](#motivation)
+> - [Specification](#specification)
+>   - [Syntax](#syntax)
+>     - [ABNF grammar](#abnf-grammar)
+>     - [Percent-encoding](#percent-encoding)
+>     - [Query parameters](#query-parameters)
+>       - [Transfer value](#transfer-value)
+>       - [Other parameters for future extensions](#other-parameters-for-future-extensions)
+>   - [Implementation](#implementation)
+>     - [Operating system integration](#operating-system-integration)
+>     - [Rules for handling URIs](#rules-for-handling-uris)
+> - [Forward compatibility](#forward-compatibility)
+> - [Backward compatibility](#backward-compatibility)
+> - [Appendix](#appendix)
+>   - [Simpler syntax](#simpler-syntax)
+>   - [Examples](#examples)
+
 ## Abstract
 
 This document proposes a URI scheme for initiating IOTA transfers.
