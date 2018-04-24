@@ -50,7 +50,7 @@ The path component consists of an IOTA address, and the query component provides
 (See also [a simpler representation of the syntax](#simpler-syntax).)
 
 ```
-iota-uri      = "iota:" [ address ] [ params ]
+iota-uri      = "iota:" address [ params ]
 address       = 90tryte ; IOTA address with checksum
 params        = "?" param *( "&" param )
 param         = [ value-param / tag-param / message-param / other-param ]
@@ -120,7 +120,7 @@ Please see the [ABNF grammar](#abnf-grammar) above for the normative syntax.
 `[foo]` means optional, `<bar>` are placeholders
 
 ```
-iota:[<address>][?value=<value>][?tag=<tag>][?message=<message>]
+iota:<address>[?value=<value>][?tag=<tag>][?message=<message>]
 ```
 
 ### Examples
