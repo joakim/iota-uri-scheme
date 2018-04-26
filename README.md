@@ -21,7 +21,7 @@ This is a proposal for IOTA, based on [BIP21](https://github.com/bitcoin/bips/bl
 >   - [Implementation](#implementation)
 >     - [Operating system integration](#operating-system-integration)
 >     - [Handling URIs](#handling-uris)
->     - [Displaying the value](#displaying-the-value)
+>     - [Displaying the amount](#displaying-the-amount)
 > - [Forward compatibility](#forward-compatibility)
 > - [Backward compatibility](#backward-compatibility)
 > - [Appendix](#appendix)
@@ -53,8 +53,8 @@ The path component consists of an IOTA address, and the query component provides
 iota-uri      = "iota:" address [ params ]
 address       = 90tryte ; IOTA address with checksum
 params        = "?" param *( "&" param )
-param         = [ value-param / tag-param / message-param / other-param ]
-value-param   = "value=" *digit
+param         = [ amount-param / tag-param / message-param / other-param ]
+amount-param  = "amount=" *digit
 tag-param     = "tag=" pvalue
 message-param = "message=" pvalue
 other-param   = pname [ "=" pvalue ]
@@ -76,11 +76,11 @@ Non-ASCII characters **MUST** first be encoded according to UTF-8 [STD63](https:
 
 #### Query parameters
 
-- `value` – Transfer value
+- `amount` – The amount of iotas to transfer
 - `tag` – A short tag to be published with the transfer
 - `message` – A message to be published with the transfer
 
-If `value` is provided, it **MUST** be specified using IOTA units (i) in integer numbers.
+If `amount` is provided, it **MUST** be specified using IOTA units (i) in integer numbers.
 
 Other parameters **MAY** be added for future extensions. These **MUST** be optional, support is not to be expected in IOTA clients.
 
@@ -96,11 +96,11 @@ IOTA clients **MUST NOT** act on URIs without getting the user's authorization.
 
 IOTA clients **SHOULD** require the user to manually approve each transfer individually, though in some cases they **MAY** allow the user to automatically make this decision.
 
-#### Displaying the value
+#### Displaying the amount
 
-IOTA clients **MAY** display the value in any format that is not intended to deceive the user.
+IOTA clients **MAY** display the amount in any format that is not intended to deceive the user.
 
-IOTA clients **SHOULD** choose a format that is foremost least confusing, and only after that the format that is most reasonable given the value specified.
+IOTA clients **SHOULD** choose a format that is foremost least confusing, and only after that the format that is most reasonable given the amount specified.
 
 ## Forward compatibility
 
@@ -120,7 +120,7 @@ Please see the [ABNF grammar](#abnf-grammar) above for the normative syntax.
 `[foo]` means optional, `<bar>` are placeholders
 
 ```
-iota:<address>[?value=<value>][?tag=<tag>][?message=<message>]
+iota:<address>[?amount=<amount>][?tag=<tag>][?message=<message>]
 ```
 
 ### Examples
@@ -135,15 +135,15 @@ Address with a tag:
 
 Request for 100 i (IOTAs):
 
-    iota:MZLFXAZOHOSGRPIGFSQATWQXTFRWATQTOZXAZIGCRXAGIED9ZCPXMCMSSUHYVEGVTOILQMAD9VZIV9PJCHCCO9YMIW?value=100
+    iota:MZLFXAZOHOSGRPIGFSQATWQXTFRWATQTOZXAZIGCRXAGIED9ZCPXMCMSSUHYVEGVTOILQMAD9VZIV9PJCHCCO9YMIW?amount=100
 
 Request for 10 Mi (Mega IOTAs):
 
-    iota:MZLFXAZOHOSGRPIGFSQATWQXTFRWATQTOZXAZIGCRXAGIED9ZCPXMCMSSUHYVEGVTOILQMAD9VZIV9PJCHCCO9YMIW?value=10000000
+    iota:MZLFXAZOHOSGRPIGFSQATWQXTFRWATQTOZXAZIGCRXAGIED9ZCPXMCMSSUHYVEGVTOILQMAD9VZIV9PJCHCCO9YMIW?amount=10000000
 
 Request for 1 Gi (Giga IOTAs) with a message:
 
-    iota:MZLFXAZOHOSGRPIGFSQATWQXTFRWATQTOZXAZIGCRXAGIED9ZCPXMCMSSUHYVEGVTOILQMAD9VZIV9PJCHCCO9YMIW?value=1000000000&message=Payment%20for%20XYZ
+    iota:MZLFXAZOHOSGRPIGFSQATWQXTFRWATQTOZXAZIGCRXAGIED9ZCPXMCMSSUHYVEGVTOILQMAD9VZIV9PJCHCCO9YMIW?amount=1000000000&message=Payment%20for%20XYZ
 
 Some future version that has parameters which are currently not understood and will therefore be ignored:
 
